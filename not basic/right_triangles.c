@@ -16,7 +16,7 @@ void print_right_triangle(int rows, int orientation, int is_hollow);
 
 int main()
 {
-  int rows, orientation, is_hollow, repeat = 0;
+  int rows = -1, orientation = 0, is_hollow = -1, repeat = 0;
   // The bulk of the program is inside this do-while loop.
   do
   {
