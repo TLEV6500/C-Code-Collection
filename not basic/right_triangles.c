@@ -8,7 +8,7 @@ int is_triangle_still_incomplete(int i, int rows);
 int is_row_still_incomplete(int j, int rows);
 int at_hypotenuse(int i, int j, int edge, int orient);
 int at_vert_side(int j, int edge, int orient);
-int at_hori_size(int i, int edge, int orient);
+int at_hori_side(int i, int edge, int orient);
 int ifNotHollow(int is_hollow, int i, int j, int edge, int orient);
 
 // Main triangle maker function. Go ahead and study this function, which is located right below main().
@@ -61,7 +61,7 @@ void print_right_triangle(int rows, int orientation, int is_hollow)
     {
       // if block checks if current (j, i) coordinate corresponds to a point on the correct triangle and prints an "*" if it does
       // else block puts a space on the rest of the coordinates that aren't part of the triangle
-      if (at_hypotenuse(i, j, EDGE, O) || at_vert_side(j, EDGE, O) || at_hori_size(i, EDGE, O) || ifNotHollow(is_hollow, i, j, EDGE, O)) printf("*");
+      if (at_hypotenuse(i, j, EDGE, O) || at_vert_side(j, EDGE, O) || at_hori_side(i, EDGE, O) || ifNotHollow(is_hollow, i, j, EDGE, O)) printf("*");
       else printf(" ");
     }
     printf("\n"); // Moves terminal cursor to the next row, don't forget to add this!
@@ -118,7 +118,7 @@ int at_vert_side(int j, int edge, int orient)
 }
 
 // Checks if current (j, i) coordinate is part of the triangle's vertical side: True (1) if it is, otherwise False (0)
-int at_hori_size(int i, int edge, int orient) 
+int at_hori_side(int i, int edge, int orient) 
 {
   const int HORIZONTAL_SIDE_IS_FIRST_ROW = 0; // Which is when i == 0 (very first row)
   const int HORIZONTAL_SIDE_IS_LAST_ROW = edge; // Which is when i == rows - 1 (very last row);
