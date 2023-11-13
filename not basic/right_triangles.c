@@ -117,7 +117,7 @@ int at_vert_side(int j, int edge, int orient)
   return 0;
 }
 
-// Checks if current (j, i) coordinate is part of the triangle's vertical side: True (1) if it is, otherwise False (0)
+// Checks if current (j, i) coordinate is part of the triangle's horizontal side: True (1) if it is, otherwise False (0)
 int at_hori_side(int i, int edge, int orient) 
 {
   const int HORIZONTAL_SIDE_IS_FIRST_ROW = 0; // Which is when i == 0 (very first row)
