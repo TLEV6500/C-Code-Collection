@@ -9,7 +9,7 @@ int is_row_still_incomplete(int j, int rows);
 int at_hypotenuse(int i, int j, int edge, int orient);
 int at_vert_side(int j, int edge, int orient);
 int at_hori_side(int i, int edge, int orient);
-int ifNotHollow(int is_hollow, int i, int j, int edge, int orient);
+int if_not_hollow(int is_hollow, int i, int j, int edge, int orient);
 
 // Main triangle maker function. Go ahead and study this function, which is located right below main().
 void print_right_triangle(int rows, int orientation, int is_hollow);
@@ -48,8 +48,9 @@ int main()
 
 void print_right_triangle(int rows, int orientation, int is_hollow)
 {
-  const int EDGE = rows - 1;
+  const int E = rows - 1; // E for edge, as in both the (leftmost and bottom) edges of the triangle, since height and width are equal
   const int O = orientation;
+  const int H = is_hollow;
   // Constructs the triangle across the terminal window like plotting points on a coordinate system
   // Outer loop moves the terminal cursor through rows, or across the i-axis (or y-axis if you prefer), from top to bottom
   // Outer loop only stops when cursor completes the entire last row (when is_triangle_still_incomplete() == false)
@@ -61,7 +62,7 @@ void print_right_triangle(int rows, int orientation, int is_hollow)
     {
       // if block checks if current (j, i) coordinate corresponds to a point on the correct triangle and prints an "*" if it does
       // else block puts a space on the rest of the coordinates that aren't part of the triangle
-      if (at_hypotenuse(i, j, EDGE, O) || at_vert_side(j, EDGE, O) || at_hori_side(i, EDGE, O) || ifNotHollow(is_hollow, i, j, EDGE, O)) printf("*");
+      if (at_hypotenuse(i, j, E, O) || at_vert_side(j, E, O) || at_hori_side(i, E, O) || if_not_hollow(H, i, j, E, O)) printf("*");
       else printf(" ");
     }
     printf("\n"); // Moves terminal cursor to the next row, don't forget to add this!
@@ -134,8 +135,8 @@ int at_hori_side(int i, int edge, int orient)
 }
 
 // Checks if user wants a hollow triangle or not, and checks if the current (j, i) point is part of the triangle's body (the inside part, excluding the sides)
-// ifNotHollow only returns true if the user wants a solid triangle and if the current point is on the body
-int ifNotHollow(int is_hollow, int i, int j, int edge, int orient) 
+// if_not_hollow only returns true if the user wants a solid triangle and if the current point is on the body
+int if_not_hollow(int is_hollow, int i, int j, int edge, int orient) 
 {
   if (is_hollow) return 0;
   const int NEGATIVE_HYPOTENUSE_POSITION_AT_J_AXIS = i; // Stores the j value of the hypotenuse (j=i) at current row
