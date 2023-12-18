@@ -10,6 +10,7 @@ int main() {
   bTmp = b;
 
   // Using XOR operator, using only two variables, one-liner version;
+  // Note XOR can only be used on integer type values, using it on floating-point values will not work
   a ^= b ^= a ^= b;
   // Program flow is described as: a ^= (b ^= (a ^= b));.
 
